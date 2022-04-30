@@ -1,4 +1,3 @@
-const axios = require('axios');
 const { Op } = require("sequelize");
 
 const nodemailer = require('nodemailer');
@@ -323,5 +322,8 @@ router.post("/sendEmail", async(req, res)=>{
         }
     })
 })
+
+//////////////////////////////////
+
 
 module.exports = router;
