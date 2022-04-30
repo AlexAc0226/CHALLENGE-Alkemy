@@ -1,12 +1,11 @@
 const { Router } = require('express');
 
-//const authentication = require('./Authentication.js');
-//const listCharacters = require('./movie.js');
 const movie = require('./movie.js');
+const authentication = require('./authentication.js');
 
 const router = Router();
 
-//router.use("/auth", authentication)
+router.use("/user", authentication)
 router.use("/", movie)
 
 module.exports = router;

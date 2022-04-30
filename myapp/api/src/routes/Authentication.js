@@ -8,8 +8,8 @@ const authConfig = require('../config/Auth');
 //Modelo ficticio
 const { User } = require('../db');
 
-//router.post("/login", userSing)
-//router.post("/register", userRegister)
+router.post('/register', register);
+router.post('/sing', sing);
 
 //Register
 const register = async (req, res) => {
