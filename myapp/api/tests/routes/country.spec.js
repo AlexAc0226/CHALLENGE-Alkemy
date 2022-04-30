@@ -2,23 +2,23 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Dog, conn } = require('../../src/db.js');
+const { Country, conn } = require('../../src/db.js');
 
 const agent = session(app);
-const dog = {
-  name: 'Pug',
+const country = {
+  name: 'Argentina',
 };
 
-describe('Videogame routes', () => {
+describe('Country routes', () => {
   before(() => conn.authenticate()
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   }));
-  beforeEach(() => Dog.sync({ force: true })
-    .then(() => Dog.create(dog)));
-  describe('GET /dogs', () => {
+  beforeEach(() => Country.sync({ force: true })
+    .then(() => Country.create(pokemon)));
+  describe('GET /countries', () => {
     it('should get 200', () =>
-      agent.get('/dogs').expect(200)
+      agent.get('/countries').expect(200)
     );
   });
 });
