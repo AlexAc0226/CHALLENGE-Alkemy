@@ -1,6 +1,7 @@
 const axios = require('axios');
 const { Op } = require("sequelize");
 
+const nodemailer = require('nodemailer');
 
 const { Router } = require('express');
 const router = Router();
@@ -288,6 +289,39 @@ router.put("/updateMovie/:id", async(req, res)=>{
     }catch(err){
         console.log(err)
     }
+})
+
+////////////////////////////////////////////////////////////////
+
+//*Envio de email
+router.post("/sendEmail", async(req, res)=>{
+    const {email, name, message} = req.body;
+
+    const transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+            user: "arne.ziemann8@ethereal.email",
+            pass: "uCCefU1YCb3uymH4HW"
+        }
+    })
+
+    const mailOptions = {
+        from: "Remitente",
+        to: "alexis-correa026@outlook.com",
+        subject: "Mensaje de contacto",
+        text: "Que tengas buen día, 👌😁"
+    }
+
+    transporter.sendMail(mailOptions, (error, info)=>{
+        if(error){
+            res.status(500).send(error.message)
+        }else{
+            console.log("Correo enviado");
+            res.status(200).send("Correo enviado")
+        }
+    })
 })
 
 module.exports = router;
